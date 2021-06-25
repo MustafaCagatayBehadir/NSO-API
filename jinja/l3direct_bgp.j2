@@ -1,0 +1,44 @@
+{% if dict_item["Enable Max Paths"] %}
+l3direct bgp enable-maximum-paths
+{% endif %}
+{% if dict_item["Bfd Status"] %}
+l3direct bgp bfd minimum-interval {{ dict_item["Bfd Min Interval"] }}
+l3direct bgp bfd multiplier {{ dict_item["Bfd Multiplier"] }}
+{% endif %}
+l3direct bgp neighbor {{ dict_item["Bgp Peer"] }}
+remote-as {{ dict_item["Remote As"] }}
+{% if dict_item["In Rpl As Path"]  is not none %}
+inbound-policy {{ dict_item["In Rpl Name"] }} as-values {{ dict_item["In Rpl As Path"] }}
+multiplier {{ dict_item["In Rpl Multiplier"] }}
+{% endif %}
+{% if dict_item["In Rpl Community Name"] is not none %}
+inbound-policy {{ dict_item["In Rpl Name"] }} community-name {{ dict_item["In Rpl Community Name"] }}
+{% endif %}
+{% if dict_item["In Rpl Prefix List"] is not none %}
+inbound-policy {{ dict_item["In Rpl Name"] }} prefix-list {{ dict_item["In Rpl Prefix List"] }}
+{% endif %}
+{% if dict_item["In Rpl Local Preference"] is not none %}
+inbound-policy {{ dict_item["In Rpl Name"] }} local-pref {{ dict_item["In Rpl Local Preference"] }}
+{% endif %}
+{% if dict_item["In Rpl Custom Policy Name"] is not none %}
+inbound-policy custom-policy {{ dict_item["In Rpl Custom Policy Name"] }}
+{% endif %}
+{% if dict_item["Out Rpl Name"] is not none %}
+outbound-policy {{ dict_item["Out Rpl Name"] }}
+{% endif %}
+{% if dict_item["Out Rpl Prefix List"] is not none %}
+outbound-policy {{ dict_item["Out Rpl Name"] }} prefix-list {{ dict_item["Out Rpl Prefix List"] }}
+{% endif %}
+{% if dict_item["Out Rpl Custom Policy Name"] is not none %}
+outbound-policy custom-policy {{ dict_item["Out Rpl Custom Policy Name"] }}
+{% endif %}
+{% if dict_item["Max Prefix"] is not none %}
+max-prefix {{ dict_item["Max Prefix"] }}
+{% endif %}
+local-as {{ dict_item["Local As"] }}
+local-as no-prepend
+local-as replace-as
+action restart
+soft-reconfiguration
+!
+

@@ -1,0 +1,11 @@
+l3direct name {{ dict_item["L3 Direct Name"] }}
+{% if dict_item["Service Policy"] %}
+l3direct service-policy input {{ dict_item["Input Policy Map"] }}
+l3direct service-policy output {{ dict_item["Output Policy Map"] }}
+{% endif %}
+l3direct ipv4-network {{ dict_item["IPv4 Network"] }}
+{% if dict_item["Secondary IPv4 Network List"] is not none %}
+l3direct secondary-ipv4-networks [ {{ dict_item["Secondary IPv4 Network List"]|join(" ") }} ]
+{% endif %}
+!
+

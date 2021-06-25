@@ -1,0 +1,9 @@
+{% if dict_item["Tenant Pa Type"] == "internal" %}
+tenant-pa {{ dict_item["Pa Name"] }}
+mode {{ dict_item["Mode"] }}
+{% else %}
+external-tenant-pa {{ dict_item["External Tenant Name"] }} {{ dict_item["Pa Name"] }}
+mode {{ dict_item["Mode"] }}
+{% endif %}
+!
+

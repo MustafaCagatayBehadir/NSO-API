@@ -1,0 +1,13 @@
+prefix-list {{ dict_item["Prefix List Name"] }}
+{{ dict_item["IPv4-Prefix"] }}
+{% if dict_item["Eq"] is not none %}
+eq {{ dict_item["Eq"] }}
+{% endif %}
+{% if dict_item["Ge"] is not none %}
+ge {{ dict_item["Ge"] }}
+{% endif %}
+{% if dict_item["Le"] is not none %}
+le {{ dict_item["Le"] }}
+{% endif %}
+!
+

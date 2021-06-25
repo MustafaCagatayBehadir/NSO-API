@@ -1,0 +1,608 @@
+TEST1_INTRA_POD_INTRA_SWITCH_INTRA_VLAN
+#######################################SW1#####################################
+vlan 500
+  name TEST1
+
+vrf context TEST1
+  description TEST1_INTRA_POD_INTRA_SWITCH_INTRA_VLAN
+
+interface Vlan500
+  description TEST1_INTRA_POD_INTRA_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST1
+  ip address 10.10.10.1/30
+#######################################SW2#####################################
+vlan 500
+  name TEST1
+
+vrf context TEST1
+  description TEST1_INTRA_POD_INTRA_SWITCH_INTRA_VLAN
+
+interface Vlan500
+  description TEST1_INTRA_POD_INTRA_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST1
+  ip address 10.10.10.2/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST2_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+#######################################SW1#####################################
+vlan 600
+  name TEST2
+
+vrf context TEST2
+  description TEST2_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+
+interface Vlan600
+  description TEST2_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST2
+  ip address 10.10.10.1/30
+#######################################SW2#####################################
+vlan 600
+  name TEST2
+
+vrf context TEST2
+  description TEST2_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+
+interface Vlan600
+  description TEST2_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST2
+  ip address 10.10.10.2/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST3_INTRA_POD_INTER_SWITCH_INTER_VLAN
+#######################################SW1#####################################
+vlan 700
+  name TEST3
+
+vrf context TEST3
+  description TEST3_INTRA_POD_INTER_SWITCH_INTER_VLAN
+
+interface Vlan700
+  description TEST3_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST3
+  ip address 10.10.10.1/30
+#######################################SW2#####################################
+vlan 800
+  name TEST3
+
+vrf context TEST3
+  description TEST3_INTRA_POD_INTER_SWITCH_INTER_VLAN
+
+interface Vlan800
+  description TEST3_INTRA_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST3
+  ip address 10.10.10.2/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST4_INTER_POD_INTER_SWITCH_INTRA_VLAN
+#######################################SW1#####################################
+vlan 900
+  name TEST4
+
+vrf context TEST4
+  description TEST4_INTER_POD_INTER_SWITCH_INTRA_VLAN
+
+interface Vlan900
+  description TEST4_INTER_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST4
+  ip address 10.10.10.1/30
+#######################################SW2#####################################
+vlan 900
+  name TEST4
+
+vrf context TEST4
+  description TEST4_INTER_POD_INTER_SWITCH_INTRA_VLAN
+
+interface Vlan900
+  description TEST4_INTER_POD_INTER_SWITCH_INTRA_VLAN
+  no shutdown
+  vrf member TEST4
+  ip address 10.10.10.2/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST5_INTER_POD_INTER_SWITCH_INTER_VLAN
+#######################################SW1#####################################
+vlan 1000
+  name TEST5
+
+vrf context TEST5
+  description TEST5_INTER_POD_INTER_SWITCH_INTER_VLAN
+
+interface Vlan1000
+  description TEST5_INTER_POD_INTER_SWITCH_INTER_VLAN
+  no shutdown
+  vrf member TEST5
+  ip address 10.10.10.1/30
+#######################################SW2#####################################
+vlan 1100
+  name TEST5
+
+vrf context TEST5
+  description TEST5_INTER_POD_INTER_SWITCH_INTER_VLAN
+
+interface Vlan1100
+  description TEST5_INTER_POD_INTER_SWITCH_INTER_VLAN
+  no shutdown
+  vrf member TEST5
+  ip address 10.10.10.2/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST6_INTERNET_STATIC_GW_DCI
+#######################################SW1#####################################
+vlan 3538
+  name TEST6
+
+vrf context TEST6
+  description TEST6_INTERNET_STATIC_GW_DCI
+  ip route 0.0.0.0/0 10.222.90.1
+
+interface Vlan3538
+  description TEST6_INTERNET_STATIC_GW_DCI
+  no shutdown
+  vrf member TEST6
+  ip address 10.222.90.2/30
+
+interface loopback6
+  description TEST6_INTERNET_STATIC_GW_DCI
+  vrf member TEST6
+  ip address 10.222.90.5/30
+#######################################SW2#####################################
+vlan 3540
+  name TEST6
+
+vrf context TEST6
+  description TEST6_INTERNET_STATIC_GW_DCI
+  ip route 0.0.0.0/0 10.222.91.1
+
+interface Vlan3540
+  description TEST6_INTERNET_STATIC_GW_DCI
+  no shutdown
+  vrf member TEST6
+  ip address 10.222.91.2/30
+
+interface loopback6
+  description TEST6_INTERNET_STATIC_GW_DCI
+  vrf member TEST6
+  ip address 10.222.91.5/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST7_INTERNET_BGP_GW_DCI
+#######################################SW######################################
+vlan 3539
+  name TEST7
+
+vrf context TEST7
+  description TEST7_INTERNET_BGP_GW_DCI
+
+interface Vlan3539
+  description TEST7_INTERNET_BGP_GW_DCI
+  no shutdown
+  vrf member TEST7
+  ip address 10.222.91.2/30
+
+interface loopback7
+  description TEST7_INTERNET_BGP_GW_DCI
+  vrf member TEST7
+  ip address 10.222.91.5/30
+
+router bgp 64512
+  vrf TEST7
+    address-family ipv4 unicast
+      network 10.222.91.4/30
+    neighbor 10.222.91.1
+      remote-as 34984
+      password cisco
+      address-family ipv4 unicast
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST8_L3VPN_STATIC_GW_DCI
+#######################################SW######################################
+vlan 3540
+  name TEST8
+
+vrf context TEST8
+  description TEST8_L3VPN_STATIC_GW_DCI
+  ip route 0.0.0.0/0 10.222.91.1
+
+interface Vlan3540
+  description TEST8_L3VPN_STATIC_GW_DCI
+  no shutdown
+  vrf member TEST8
+  ip address 10.222.91.2/30
+
+interface loopback8
+  description TEST8_L3VPN_STATIC_GW_DCI
+  vrf member TEST8
+  ip address 10.222.91.5/30
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST9_L3VPN_BGP_GW_DCI
+#######################################SW1#####################################
+vlan 3539
+  name TEST9
+
+vrf context TEST9
+  description TEST9_L3VPN_BGP_GW_DCI
+
+interface Vlan3539
+  description TEST9_L3VPN_BGP_GW_DCI
+  no shutdown
+  vrf member TEST9
+  ip address 10.222.90.2/30
+
+interface loopback9
+  description TEST9_L3VPN_BGP_GW_DCI
+  vrf member TEST9
+  ip address 10.222.90.9/32
+
+router bgp 64512
+  vrf TEST9
+    address-family ipv4 unicast
+      network 10.222.90.9/32
+    neighbor 10.222.90.1
+      remote-as 34984
+      password cisco
+      address-family ipv4 unicast
+#######################################SW2#####################################
+vlan 3541
+  name TEST9
+
+vrf context TEST9
+  description TEST9_L3VPN_BGP_GW_DCI
+
+interface Vlan3541
+  description TEST9_L3VPN_BGP_GW_DCI
+  no shutdown
+  vrf member TEST9
+  ip address 10.222.91.2/30
+
+interface loopback9
+  description TEST9_L3VPN_BGP_GW_DCI
+  vrf member TEST9
+  ip address 10.222.91.9/32
+
+router bgp 64512
+  vrf TEST9
+    address-family ipv4 unicast
+      network 10.222.91.9/32
+    neighbor 10.222.91.1
+      remote-as 34984
+      password cisco
+      address-family ipv4 unicast
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST10_DC_INTERCONNECT_VTS_DC
+#######################################SW######################################
+vlan 3536
+  name TEST10
+
+vrf context TEST10
+  description TEST10_DC_INTERCONNECT_VTS_DC
+
+interface Vlan3536
+  description TEST10_DC_INTERCONNECT_VTS_DC
+  no shutdown
+  vrf member TEST10
+  ip address 10.224.60.193/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST11_DC_INTERCONNECT_ACI_DC
+#######################################SW######################################
+vlan 1221
+  name TEST11
+
+vrf context TEST11
+  description TEST11_DC_INTERCONNECT_ACI_DC
+
+interface Vlan1221
+  description TEST11_DC_INTERCONNECT_ACI_DC
+  no shutdown
+  vrf member TEST11
+  ip address 10.220.28.1/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST12_L3OUT_CUST_DCI_STATIC_ROUTE
+#######################################SW######################################
+vlan 1200
+  name TEST12
+
+vrf context TEST12
+  description TEST12_L3OUT_CUST_DCI_STATIC_ROUTE
+  ip route 0.0.0.0/0 10.222.90.1
+
+interface Vlan1200
+  description TEST12_L3OUT_CUST_DCI_STATIC_ROUTE
+  no shutdown
+  vrf member TEST12
+  ip address 10.222.90.2/30
+
+interface loopback12
+  description TEST12_L3OUT_CUST_DCI_STATIC_ROUTE
+  vrf member TEST12
+  ip address 10.222.90.5/30
+#######################################NSO#####################################
+acidc tenants TEST12
+ port pa test12_lf139_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l3
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           139
+  l3-node-port      1/2
+ !
+ vrf test12-int
+  vrf-type internet
+ !
+ service dclan TEST12-VLAN-1200
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1200_L3OUTDCI
+   vrf test12-int
+   encap 1200
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.248/29
+     static-to-fabric prefix 10.222.90.4/30
+     !
+     static-to-dci prefix 0.0.0.0/0
+     !
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1200_L3OUTCUST
+   vrf test12-int
+   encap 1200
+    tenant-pa test12_lf139_e2
+     ipv4-address-and-mask 10.222.90.1/30
+     static prefix 10.222.90.4/30
+      next-hop 10.222.90.2
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST13_L3OUT_BGP
+#######################################SW######################################
+vlan 1300
+  name TEST13
+
+vrf context TEST13
+  description TEST13_L3OUT_BGP
+
+interface Vlan1300
+  description TEST13_L3OUT_BGP
+  no shutdown
+  vrf member TEST13
+  ip address 10.222.90.2/30
+
+interface loopback13
+  description TEST13_L3OUT_BGP
+  vrf member TEST13
+  ip address 10.222.90.13/32
+
+router bgp 64512
+  vrf TEST13
+    address-family ipv4 unicast
+      network 10.222.90.13/32
+    neighbor 10.222.90.1
+      remote-as 65036
+      password cisco
+      address-family ipv4 unicast
+#######################################NSO#####################################
+acidc tenants TEST13
+ port pa test13_lf106_e3
+  fabric            gbz-aci-sol-fabric-1-2
+  type              SA
+  domain-type       l3
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           106
+  l3-node-port      1/3
+ !
+ vrf test13-int
+  vrf-type internet
+ !
+ service dclan TEST13-VLAN-1300
+  fabric gbz-aci-sol-fabric-1-2
+  fabric-routing l3out-dci VLAN_1300_L3OUTDCI
+   vrf test13-int
+   encap 1300
+    l3-nni BLF_905_906_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.240/29
+     bgp password cisco
+     bgp dci-policy inbound-policy DENY-DEFAULT
+     bgp dci-policy outbound-policy DEFAULT-ONLY
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1300_L3OUTCUST
+   vrf test13-int
+   encap 1300
+    tenant-pa test13_lf106_e3
+     ipv4-address-and-mask 10.222.90.1/30
+     bgp neighbor 10.222.90.2
+      remote-as 64512
+      password  cisco
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST14_VPC_L3OUT_BGP
+#######################################SW######################################
+vlan 1400
+  name TEST14
+
+vrf context TEST14
+  description TEST14_L3OUT_VPC_BGP
+
+interface Vlan1400
+  description TEST14_L3OUT_VPC_BGP
+  no shutdown
+  vrf member TEST14
+  ip address 10.222.91.4/29
+
+interface loopback14
+  vrf member TEST14
+  ip address 10.222.91.14/32
+
+router bgp 64512
+  vrf TEST14
+    address-family ipv4 unicast
+      network 10.222.91.14/32
+    neighbor 10.222.91.2
+      remote-as 65036
+      password cisco
+      address-family ipv4 unicast
+    neighbor 10.222.91.3
+      remote-as 65036
+      password cisco
+      address-family ipv4 unicast
+#######################################NSO#####################################
+acidc tenants TEST14
+ port pa test14_lf109-110_vpc1
+  fabric                   gbz-aci-ict-fabric-2
+  type                     VPC
+  domain-type              l3
+  pod                      1
+  bundle-interface-profile 10G_SWITCH_INTPOL_BUN
+  node-1-id                109
+  node-1-port              [ 1/2 ]
+  node-2-id                110
+  node-2-port              [ 1/1 ]
+ !
+ vrf test14-int
+  vrf-type internet
+ !
+ service dclan TEST14-VLAN-1400
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1400_L3OUTDCI
+   vrf test14-int
+   encap 1400
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.232/29
+     bgp default-originate
+     bgp dci-policy inbound-policy DENY-DEFAULT
+     bgp dci-policy outbound-policy DEFAULT-ONLY
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1400_L3OUTCUST
+   vrf test14-int
+   encap 1400
+    tenant-pa test14_lf109-110_vpc1
+     vpc-addresses ipv4-address-and-mask-virtual 10.222.91.1/29
+     vpc-addresses ipv4-address-and-mask-node-1 10.222.91.2/29
+     vpc-addresses ipv4-address-and-mask-node-2 10.222.91.3/29
+     bgp neighbor 10.222.91.4
+      remote-as 64512
+      password  $8$OiM5iY3IwjG+SU1hOI6azNf5vgg68j+aSttaCe6dWSQ=
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST15_L2_EXTENSION_VPLS
+#######################################SW######################################
+vlan 2101
+  name TEST15
+
+vrf context TEST15
+  description TEST15_L2_EXTENSION_VPLS
+
+interface Vlan2101
+  description TEST15_L2_EXTENSION_VPLS
+  no shutdown
+  vrf member TEST15
+  ip address 10.220.28.1/30
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST16_INTERNET_ACCESS_SERVICE_OSPF
+#######################################SW######################################
+vlan 3542
+  name TEST16
+
+vrf context TEST16
+  description TEST16_INTERNET_ACCESS_SERVICE_OSPF
+
+router ospf 16
+  vrf TEST16
+    router-id 10.222.91.16
+    area 0.0.0.1 stub
+    passive-interface default
+
+interface Vlan3542
+  description TEST16_INTERNET_ACCESS_SERVICE_OSPF
+  no shutdown
+  vrf member TEST16
+  ip address 10.222.91.2/30
+  no ip ospf passive-interface
+  ip router ospf 16 area 0.0.0.1
+
+interface loopback16
+  vrf member TEST16
+  ip address 10.222.91.16/32
+  ip router ospf 16 area 0.0.0.1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEST17_GENERIC_L3_MULTICAST_QUERIER
+#######################################SW######################################
+vlan 1700
+  name TEST17
+
+vlan configuration 1700
+  ip igmp snooping
+
+vrf context TEST17
+  description TEST17_GENERIC_L3_MULTICAST_QUERIER
+
+
+interface Vlan1700
+  description TEST17_GENERIC_L3_MULTICAST_QUERIER
+  ip address 10.222.90.2/30
+#######################################NSO#####################################
+acidc tenants TEST17
+ port pa test17_lf139_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l2
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           139
+  node-port         [ 1/2 ]
+ !
+ vrf test17-int
+  vrf-type internet
+ !
+ service dclan TEST17-VLAN-1700
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_1700_BD
+   vrf               test17-int
+   pervasive-gateway
+   subnet 10.222.90.1/30
+    enable-multicast-query
+   !
+   epg 1700
+    encap 1700
+     tenant-pa test17_lf139_e2
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+
+
+

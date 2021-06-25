@@ -1,0 +1,25 @@
+port pa {{ dict_item["Pa Name"] }}
+fabric            {{ dict_item["Fabric"] }}
+{% if dict_item["Pa Type"] == "SA" %}
+type              SA
+pod               {{ dict_item["Pod"] }}
+interface-profile {{ dict_item["Interface Profile"] }}
+node-id           {{ dict_item["Node Id"] }}
+node-port         [ {{ dict_item["Node Port List"]|join(" ") }} ]
+{% elif dict_item["Pa Type"] == "PC" %}
+type              PC
+pod               {{ dict_item["Pod"] }}
+bundle-interface-profile {{ dict_item["Interface Profile"] }}
+node-id           {{ dict_item["Node Id"] }}
+node-port         [ {{ dict_item["Node Port List"]|join(" ") }} ]
+{% else %}
+type              VPC
+pod               {{ dict_item["Pod"] }}
+bundle-interface-profile {{ dict_item["Interface Profile"] }}
+node-1-id         {{ dict_item["Node Id 1"] }}
+node-1-port       [ {{ dict_item["Node Id 1 Port List"]|join(" ") }} ]
+node-2-id         {{ dict_item["Node Id 2"] }}
+node-2-port       [ {{ dict_item["Node Id 2 Port List"]|join(" ") }} ] 
+{% endif %}
+!
+

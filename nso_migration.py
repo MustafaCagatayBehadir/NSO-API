@@ -1,0 +1,40 @@
+from nso import Nso
+
+
+def nso_jsonrpc():
+    nso = Nso(host="10.214.50.233", file_name="29-30Haziran__1-2Temmuz__Gebze DC2 ICT_LAN_FW_LB_services_V4.xlsx")
+    nso.cookies()
+    nso.start_new_read_write_transaction()
+    nso.create_tenants()
+    nso.create_services()
+    nso.create_vrfs()
+    nso.create_bds()
+    nso.create_epgs()
+    nso.create_encaps()
+    nso.create_pas()
+    nso.create_tenant_pas()
+    nso.create_prefix_lists()
+    nso.create_l3directs()
+    nso.create_l3direct_statics()
+    nso.create_l3direct_ospfs()
+    nso.create_l3direct_bgps()
+    nso.create_l2externals()
+    nso.create_transit_leaf_tenant_pas(tenant_pa_name="TRANSIT_LEAF_lf135-136_vpc43", fabric="gbz-aci-ict-fabric-2")
+    # nso.create_pa_portgroups(tenant="ParmakiziOkuyucu", dc_id="1")
+    # nso.create_tenant_pa_portgroups(tenant="ParmakiziOkuyucu", dc_id="1")
+    # nso.remove_tenant_pas()
+    # nso.remove_transit_leaf_tenant_pas(pa_name="TRANSIT_LEAF_lf105-106_vpc43")
+    # nso.remove_port_pas()
+    # nso.remove_services()
+    # nso.get_port_pa_with_conditions(name_condition="GBZHPESX", tenant_condition="VMs-PORTS", fabric_condition="gbz-aci-sol-fabric-5-6")
+    # nso.delete_l3direct_shutdowns(group_name=3)
+    # nso.get_transaction_change(devices_list=["nw_apic_001.41gbzdc1_05.11","nw_dr_asr9_001.41gbzdc1_05.07","nw_dr_asr9_002.41gbzdc2_06.16"])
+    # nso.validate_commit()
+    # nso.commit_dryrun()
+    # nso.commit_nonetworking()
+    nso.validate_commit()
+    nso.commit()
+
+
+if __name__ == "__main__":
+    nso_jsonrpc()

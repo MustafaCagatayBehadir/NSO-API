@@ -1,0 +1,775 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST1
+ port pa test1_l2_lf143_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/1 ]
+ !
+ port pa test1_l2_lf143_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/2 ]
+ !
+ vrf test1-isolated
+  vrf-type isolated
+ !
+ service dclan TEST1-VLAN500
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_500_BD
+   vrf test1-isolated
+   epg VLAN_500_EPG
+    encap 500
+     tenant-pa test1_l2_lf143_e1
+      mode regular
+     !
+     tenant-pa test1_l2_lf143_e2
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST2
+ port pa test2_l2_lf143_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 1G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/2 ]
+ !
+ port pa test2_l2_lf144_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 1G_SWITCH_INTPOL_GRP
+  node-id           144
+  node-port         [ 1/1 ]
+ !
+ vrf test2-isolated
+  vrf-type isolated
+ !
+ service dclan TEST2-VLAN600
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_600_BD
+   vrf test2-isolated
+   epg VLAN_600_EPG
+    encap 600
+     tenant-pa test2_l2_lf143_e2
+      mode regular
+     !
+     tenant-pa test2_l2_lf144_e1
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST3
+ port pa test3_l2_lf143_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/1 ]
+ !
+ port pa test3_l2_lf144_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           144
+  node-port         [ 1/2 ]
+ !
+ vrf test3-isolated
+  vrf-type isolated
+ !
+ service dclan TEST3-VLAN700-800
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_700_800_BD
+   vrf test3-isolated
+   epg VLAN_700_800_EPG
+    encap 700
+     tenant-pa test3_l2_lf143_e1
+      mode regular
+     !
+    !
+    encap 800
+     tenant-pa test3_l2_lf144_e2
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST4
+ port pa test4_l2_lf143_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/2 ]
+ !
+ port pa test4_l2_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test4-isolated
+  vrf-type isolated
+ !
+ service dclan TEST4-VLAN900
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_900_BD
+   vrf test4-isolated
+   epg VLAN_900_EPG
+    encap 900
+     tenant-pa test4_l2_lf143_e1
+      mode regular
+     !
+     tenant-pa test4_l2_lf606_e95
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST5
+ port pa test5_l2_lf143_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/2 ]
+ !
+ port pa test5_l2_lf605_P1
+  fabric                   gbz-aci-ict-fabric-2
+  type                     PC
+  pod                      2
+  bundle-interface-profile 10G_SWITCH_INTPOL_BUN
+  node-id                  605
+  node-port                [ 1/96 ]
+ !
+ vrf test5-isolated
+  vrf-type isolated
+ !
+ service dclan TEST5-VLAN1000-1100
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_1000_1100_BD
+   vrf test5-isolated
+   epg VLAN_1000_1100_EPG
+    encap 1000
+     tenant-pa test5_l2_lf143_e2
+      mode regular
+     !
+    !
+    encap 1100
+     tenant-pa test5_l2_lf605_P1
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST6
+ port pa test6_int_lf143_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/2 ]
+ !
+ port pa test6_int_lf606_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              PC
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_BUN
+  node-id           605
+  node-port         [ 1/96 ]
+ !
+ vrf test6-int
+  vrf-type internet
+ !
+ service dclan TEST6-VLAN3538
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3538_BD
+   vrf test6-int
+   epg VLAN_3538_EPG
+    encap 3538
+     tenant-pa test6_int_lf143_e2
+      mode regular
+     !
+     l3direct name BLF_801_802_DCI_VPC_INTPOL
+     l3direct service-policy
+     l3direct ipv4-network 10.222.90.1/30
+     l3direct static prefix 10.222.90.4/30
+      administrative-distance 60
+      tag                     100
+      via                     [ 10.222.90.2 ]
+     !
+    !
+   !
+  !
+ !
+ service dclan TEST6-VLAN3540
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3540_BD
+   vrf test6-int
+   epg VLAN_3540_EPG
+    encap 3540
+     tenant-pa test6_int_lf606_e1
+      mode regular
+     !
+     l3direct name BLF_901_902_DCI_VPC_INTPOL
+     l3direct service-policy
+     l3direct ipv4-network 10.222.91.1/30
+     l3direct static prefix 10.222.91.4/30
+      via         [ 10.222.91.2 ]
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST7
+ port pa test_int_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test7-int
+  vrf-type internet
+ !
+ prefix-list PS_TEST7
+  10.222.90.4/30
+   eq 30
+  !
+  10.222.91.4/30
+   eq 30
+  !
+ !
+ service dclan TEST7-VLAN3539
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3539_BD
+   vrf test7-int
+   epg VLAN_3539_EPG
+    encap 3539
+     tenant-pa test_int_lf606_e95
+      mode regular
+     !
+     l3direct name BLF_901_902_DCI_VPC_INTPOL
+     l3direct ipv4-network 10.222.91.1/30
+     l3direct bgp neighbor 10.222.91.2
+      remote-as            64512
+      inbound-policy INET-123-AS-PATH-PREPEND as-values 64512
+       multiplier 3
+      !
+      inbound-policy INET-123-AS-PATH-PREPEND prefix-list PS_TEST7
+      outbound-policy DEFAULT-ONLY
+      max-prefix           1000
+      default-originate
+      action               restart
+      password             cisco
+      soft-reconfiguration
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST8
+ port pa test8_mpls_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test8-mpls
+  vrf-type private
+  vpn-id   4207
+ !
+ service dclan TEST8-VLAN3540
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3540_BD
+   vrf test8-mpls
+   epg VLAN_3540_EPG
+    encap 3540
+     tenant-pa test8_mpls_lf606_e95
+      mode regular
+     !
+     l3direct name BLF_901_902_DCI_VPC_INTPOL
+     l3direct ipv4-network 10.222.91.1/30
+     l3direct static prefix 10.222.91.4/30
+      via         [ 10.222.91.2 ]
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST9
+ port pa test9_mpls_lf143_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/1 ]
+ !
+ port pa test9_mpls_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test9-mpls
+  vrf-type         private
+  vpn-id           4208
+  custom-export-rt [ 34984:4198 ]
+  custom-import-rt [ 34984:4198 ]
+  policy gbz-aci-ict-fabric-2
+   enable-rp-managment-888 true
+  !
+ !
+ service dclan TEST9-VLAN3539
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3539_BD
+   vrf test9-mpls
+   epg VLAN_3539_EPG
+    encap 3539
+     tenant-pa test9_mpls_lf143_e1
+      mode regular
+     !
+     l3direct name BLF_801_802_DCI_VPC_INTPOL
+     l3direct ipv4-network 10.222.90.1/30
+     l3direct bgp neighbor 10.222.90.2
+      remote-as            64512
+      inbound-policy DENY-DEFAULT
+      outbound-policy DEFAULT-ONLY
+      max-prefix           1000
+      default-originate
+      action               restart
+      password             cisco
+      soft-reconfiguration
+     !
+    !
+   !
+  !
+ !
+ service dclan TEST9-VLAN3541
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3541_BD
+   vrf test9-mpls
+   epg VLAN_3541_EPG
+    encap 3541
+     tenant-pa test9_mpls_lf606_e95
+      mode regular
+     !
+     l3direct name BLF_901_902_DCI_VPC_INTPOL
+     l3direct ipv4-network 10.222.91.1/30
+     l3direct bgp neighbor 10.222.91.2
+      remote-as            64512
+      inbound-policy DENY-DEFAULT
+      outbound-policy DEFAULT-ONLY
+      max-prefix           1000
+      default-originate
+      action               restart
+      password             cisco
+      soft-reconfiguration
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST10
+ port pa test10_mpls_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test10-isolated
+  vrf-type isolated
+ !
+ service dclan TEST10-VLAN3536
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3536_BD
+   vrf test10-isolated
+   epg VLAN_3536_EPG
+    encap 3536
+     tenant-pa test10_mpls_lf606_e95
+      mode regular
+     !
+     l2ext name BLF_901_902_DCI_VPC_INTPOL
+     l2ext type evpn
+     l2ext evi 3536
+     l2ext mtu 9000
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST11
+ port pa test11_mpls_lf143_e1
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           143
+  node-port         [ 1/1 ]
+ !
+ vrf test11-isolated
+  vrf-type isolated
+ !
+ service dclan TEST11-VLAN2100
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_2101_BD
+   vrf test11-isolated
+   epg VLAN_2101_EPG
+    encap 2101
+     tenant-pa test11_mpls_lf143_e1
+      mode regular
+     !
+     l2ext name BLF_801_802_DCI_VPC_INTPOL
+     l2ext type evpn
+     l2ext evi 1221
+     l2ext mtu 9000
+    !
+   !
+  !
+ !
+!
+!
+
+acidc tenants TEST-TO-GBZ-REFRESH
+ port pa Test_DCI_to_GBZ_Refresh
+  fabric            ank-aci-ict-fabric-1
+  type              SA
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           178
+  node-port         [ 1/1 ]
+ !
+ vrf Test-L2-DCI
+  vrf-type isolated
+ !
+ service dclan DCI-TEST-TO-GBZ-VLAN1221
+  fabric ank-aci-ict-fabric-1
+  bd VLAN_1221_BD
+   vrf Test-L2-DCI
+   epg VLAN_1221_EPG
+    encap 1221
+     tenant-pa Test_DCI_to_Gebze_Refresh
+      mode untagged
+     !
+     l2ext name BLF_801_802_DCI_VPC_INTPOL
+     l2ext type evpn
+     l2ext evi 1221
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST12
+ port pa test12_lf139_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l3
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           139
+  l3-node-port      1/2
+ !
+ vrf test12-int
+  vrf-type internet
+ !
+ service dclan TEST12-VLAN-1200
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1200_L3OUTDCI
+   vrf test12-int
+   encap 1200
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.248/29
+     static-to-fabric prefix 10.222.90.4/30
+     !
+     static-to-dci prefix 0.0.0.0/0
+     !
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1200_L3OUTCUST
+   vrf test12-int
+   encap 1200
+    tenant-pa test12_lf139_e2
+     ipv4-address-and-mask 10.222.90.1/30
+     static prefix 10.222.90.4/30
+      next-hop 10.222.90.2
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST13
+ port pa test13_lf139_e2
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l3
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           139
+  l3-node-port      1/2
+ !
+ vrf test13-int
+  vrf-type internet
+ !
+ prefix-list PS_TEST13
+  10.222.90.13/32
+   eq 32
+  !
+ !
+ service dclan TEST13-VLAN-1300
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1300_L3OUTDCI
+   vrf test13-int
+   encap 1300
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.240/29
+     bgp password      $8$AZsDft7JlmIxQEubP8xe/k8zdTJOe+FyouGipM3V3wg=
+     bgp default-originate
+     bgp dci-policy inbound-policy TENANT-EBGP-INET-123 prefix-list PS_TEST13
+     bgp dci-policy outbound-policy DEFAULT-ONLY
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1300_L3OUTCUST
+   vrf test13-int
+   encap 1300
+    tenant-pa test13_lf139_e2
+     ipv4-address-and-mask 10.222.90.1/30
+     bgp neighbor 10.222.90.2
+      remote-as 64512
+      password  $8$lOAnySEwO8p0HzI1On3L+iidia5dqode0J3MLk4Mtbs=
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST14
+ port pa test14_lf425-426_vpc1
+  fabric                   gbz-aci-ict-fabric-2
+  type                     VPC
+  domain-type              l3
+  pod                      2
+  bundle-interface-profile 10G_SWITCH_INTPOL_BUN
+  node-1-id                425
+  node-1-port              [ 1/2 ]
+  node-2-id                426
+  node-2-port              [ 1/2 ]
+ !
+  prefix-list PS_TEST14
+  10.222.91.14/32
+   eq 32
+ !
+ vrf test14-int
+  vrf-type internet
+ !
+ service dclan TEST14-VLAN-1400
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1400_L3OUTDCI
+   vrf test14-int
+   encap 1400
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.232/29
+     bgp default-originate
+     bgp dci-policy inbound-policy TENANT-EBGP-INET-123-LOCAL-PREF prefix-list PS_TEST14 local-pref 100
+     bgp dci-policy outbound-policy DEFAULT-ONLY
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1400_L3OUTCUST
+   vrf test14-int
+   encap 1400
+    tenant-pa test14_lf425-426_vpc1
+     vpc-addresses ipv4-address-and-mask-virtual 10.222.91.1/29
+     vpc-addresses ipv4-address-and-mask-node-1 10.222.91.2/29
+     vpc-addresses ipv4-address-and-mask-node-2 10.222.91.3/29
+     bgp neighbor 10.222.91.4
+      remote-as 64512
+      password  cisco
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+! 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST16
+ port pa test16_mpls_lf606_e95
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  pod               2
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           606
+  node-port         [ 1/95 ]
+ !
+ vrf test16-mpls
+  vrf-type private
+  vpn-id   4209
+ !
+ service dclan TEST16-VLAN3542
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_3542_BD
+   vrf test16-mpls
+   epg VLAN_3542_EPG
+    encap 3542
+     tenant-pa test16_mpls_lf606_e95
+      mode regular
+     !
+     l3direct name BLF_901_902_DCI_VPC_INTPOL
+     l3direct ipv4-network 10.222.91.1/30
+     l3direct ospf processes-id 16
+     l3direct ospf default-originate
+     l3direct ospf area 0.0.0.1
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST17
+ port pa test17_lf105_e3
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l2
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           105
+  node-port         [ 1/3 ]
+ !
+ vrf test17-int
+  vrf-type internet
+ !
+ service dclan TEST17-VLAN-1700
+  fabric gbz-aci-ict-fabric-2
+  bd VLAN_1700_BD
+   vrf test17-int
+   pervasive-gateway
+   subnet 10.222.90.1/30
+    enable-multicast-query
+   !
+   epg 1700
+    encap 1700
+     tenant-pa test17_lf105_e3
+      mode regular
+     !
+    !
+   !
+  !
+ !
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+acidc tenants TEST18
+ port pa test13_lf106_e3
+  fabric            gbz-aci-ict-fabric-2
+  type              SA
+  domain-type       l3
+  pod               1
+  interface-profile 10G_SWITCH_INTPOL_GRP
+  node-id           106
+  l3-node-port      1/3
+ !
+ vrf test18-mpls
+  vrf-type private
+  vpn-id 4210
+ !
+ prefix-list PS_TEST18
+  10.222.90.18/32
+   eq 32
+  !
+ !
+ service dclan TEST18-VLAN-1800
+  fabric gbz-aci-ict-fabric-2
+  fabric-routing l3out-dci VLAN_1800_L3OUTDCI
+   vrf test18-mpls
+   encap 1800
+    l3-nni BLF_805_806_DCI_VPC_INTPOL
+     ipv4-network 10.222.90.240/29
+     bgp password cisco
+     bgp dci-policy inbound-policy TENANT-EBGP-INET-ONLY-LOCAL-PREF prefix-list PS_TEST18
+     bgp dci-policy outbound-policy PASS-ALL
+     aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+     aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    !
+   !
+  !
+  fabric-routing l3out-customer VLAN_1800_L3OUTCUST
+   vrf test18-mpls
+   encap 1800
+    tenant-pa test13_lf106_e3
+     ipv4-address-and-mask 10.222.90.1/30
+     bgp neighbor 10.222.90.2
+      remote-as 64512
+      password  cisco
+     !
+    !
+    aci-policies export-policy FABRIC-ROUTES-AND-DEFAULT
+    aci-policies import-policy FABRIC-ROUTES-AND-DEFAULT
+   !
+  !
+ !
+!

@@ -1,0 +1,35 @@
+vrf {{ dict_item["Vrf Name"] }}
+{% if dict_item["Vrf Type"] == "isolated" %}
+vrf-type isolated
+{% elif dict_item["Vrf Type"] == "internet" %}
+vrf-type internet
+{% else %}
+vrf-type         private
+vpn-id           {{ dict_item["Vpn Id"] }}
+{% if dict_item["Disable Primary RT"] %}
+disable-primary-rt
+{% endif %}
+{% if dict_item["Default Originate"] %}
+default-originate
+{% endif %}
+{% if dict_item["Custom Import RT List"] is not none %}
+custom-import-rt [ {{ dict_item["Custom Import RT List"]|join(" ") }} ]
+{% endif %}
+{% if dict_item["Custom Export RT List"] is not none %}
+custom-export-rt [ {{ dict_item["Custom Export RT List"]|join(" ") }} ]
+{% endif %}
+{% if dict_item["Vrf Policy"] %}
+policy {{ dict_item["Policy"] }}
+{% if dict_item["RP Management 888"] %}
+enable-rp-managment-888 true
+{% endif %}
+{% if dict_item["Vrf Import Policy"] is not none %}
+vrf import-policy {{ dict_item["Vrf Import Policy"] }}
+{% endif %}
+{% if dict_item["Vrf Export Policy"] is not none %}
+vrf export-policy {{ dict_item["Vrf Export Policy"] }}
+{% endif %}
+{% endif %}
+{% endif %}
+!
+
