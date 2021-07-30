@@ -1,0 +1,10 @@
+---
+routers:
+  - rtr-ios-R1
+  - rtr-xr-R2
+  - rtr-nx-R3
+switches:
+  - sw-ios-SW1
+  - sw-xe-SW2
+  - sw-nx-SW3
+...
